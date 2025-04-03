@@ -1,0 +1,10 @@
+accelerate launch train_text_to_image_lora.py \
+  --pretrained_model_name_or_path="runwayml/stable-diffusion-v1-5" \
+  --dataset_name="HLife15/drawing" --caption_column='text' \
+  --resolution=512 --random_flip \
+  --train_batch_size=1 \
+  --num_train_epochs=100 --checkpointing_steps=5000 \
+  --learning_rate=1e-04 --lr_scheduler="cosine" --lr_warmup_steps=0 \
+  --seed=2025 \
+  --output_dir="/content/finetuned" \
+  --validation_prompt="drawn by KSH drawing style, a anime girl, blonde hair, green eyes, school uniform, smile, sunshine, bright background" --report_to="wandb"
