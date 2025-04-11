@@ -6,7 +6,7 @@ os.environ['TF_ENABLE_ONEDNN_OPTS'] = '0'
 
 model_path='HLife15/kshdrawing' #hugging face
 
-pipe = StableDiffusionPipeline.from_pretrained('runwayml/stable-diffusion-v1-5', torch_dtype=torch.float16,use_auth_token=True)
+pipe = StableDiffusionPipeline.from_pretrained('stablediffusionapi/anything-v5', torch_dtype=torch.float16,use_auth_token=True)
 pipe.unet.load_attn_procs(model_path)
 pipe.to("cuda")
 
