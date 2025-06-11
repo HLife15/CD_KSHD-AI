@@ -14,7 +14,7 @@ import os
 os.environ['TF_ENABLE_ONEDNN_OPTS'] = '0'
 
 
-model_path = 'D:/backup/finetuned3'
+model_path = 'D:/backup/finetuned'
 pipe = StableDiffusionPipeline.from_pretrained(
     'stablediffusionapi/anything-v5',
     torch_dtype=torch.float16,
@@ -23,9 +23,10 @@ pipe = StableDiffusionPipeline.from_pretrained(
 )
 pipe.unet.load_attn_procs(model_path)
 device = "cuda" if torch.cuda.is_available() else "cpu"
+print(device)
 pipe.to(device)
 
-POSITIVE_PREFIX = "(drawn by KSH drawing style : 2.0)"
+POSITIVE_PREFIX = "(drawn by KSH drawing style : 1.5)"
 NEGATIVE_PREFIX = """FastNegativeV2,(bad-artist:1.0), 
 (worst quality, low quality:1.4), (bad_prompt_version2:0.8),
 bad-hands-5,lowres, bad anatomy, bad hands, ((text)), (watermark),
