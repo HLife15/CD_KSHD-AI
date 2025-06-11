@@ -41,19 +41,9 @@ for i in range(len(file_list)):
   generated_text = processor.batch_decode(generated_ids, skip_special_tokens=True)[0].strip()
   caption.append(generated_text)
 
-  #while True:
-    #generated_text = processor.batch_decode(generated_ids, skip_special_tokens=True)[0].strip()
-    #caption.append(generated_text)
-
-    #if caption[i].find("-") == -1 and caption[i].find(".") == -1:
-       #break
-    
-    #del caption[-1]
-
   caption[i] = caption[i].replace(',', '')
   print(img_name[i] + ", " + caption[i])
   
-
   gc.collect()
   torch.cuda.empty_cache()
 
