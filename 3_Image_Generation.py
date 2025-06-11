@@ -4,7 +4,7 @@ import os
 
 os.environ['TF_ENABLE_ONEDNN_OPTS'] = '0'
 
-model_path='D:/backup/finetuned3' #hugging face
+model_path='D:/backup/finetuned' #hugging face
 
 pipe = StableDiffusionPipeline.from_pretrained('stablediffusionapi/anything-v5', torch_dtype=torch.float16,safety_checker = None,use_auth_token=True)
 pipe.unet.load_attn_procs(model_path)
