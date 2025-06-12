@@ -2,7 +2,7 @@
 
 ### 📄프로젝트 소개
 ---
-LoRA 기법을 활영해 프롬프트를 입력하면 내 그림체(KSH Drawing Style)로 그려주는 그림 생성 인공지능 프로그램 제작
+LoRA 기법을 활영해 프롬프트를 입력하면 내 그림체(KSH Drawing Style)로 그려주는 그림 생성 인공지능 프로그램 제작. 현재는 Text-to-Image 기능만 구현되어 있으나 Image-to-Image 기능을 만드는 게 프로젝트의 최종목표이다.
 </br></br></br></br>
 
 ### ✒️KSH Drawing Style
@@ -96,4 +96,31 @@ accelerate launch train_text_to_image_lora.py
 ![Image](https://github.com/user-attachments/assets/2d61cdf6-ac45-4841-a0b4-afc719fd7481)
 
 
+</br></br></br></br>
 
+
+### 📰결과
+---
+**(2025.06.12. // Dataset = 5700, batch size = 1, epochs = 50, checkpoint-10000)**
+
+</br>
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/e7b0a292-afb7-4367-be0a-8122f98ddf98" width="45%"/>
+  <img src="https://github.com/user-attachments/assets/40e771f8-3882-4a2e-9681-f4d44aa51b8d" width="45%"/>
+</p>
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/5c59edf2-5f5d-48c3-9339-aa9f8e213120" width="45%"/>
+  <img src="https://github.com/user-attachments/assets/88b2e495-35a4-4c96-bfb3-c6bbc45c7dc4" width="45%"/>
+</p>
+</br>
+
+</br></br></br></br>
+
+### 📌참고 문헌
+---
+https://pej2834.tistory.com/40
+</br>
+https://huggingface.co/tasks/text-to-image
+</br>
+https://huggingface.co/docs/transformers/en/model_doc/blip-2
