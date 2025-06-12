@@ -22,9 +22,11 @@ pipe = StableDiffusionPipeline.from_pretrained(
     use_auth_token=True
 )
 pipe.unet.load_attn_procs(model_path)
+
 device = "cuda" if torch.cuda.is_available() else "cpu"
-print(device)
+
 pipe.to(device)
+
 
 POSITIVE_PREFIX = "(drawn by KSH drawing style : 1.5)"
 NEGATIVE_PREFIX = """FastNegativeV2,(bad-artist:1.0), 
@@ -67,11 +69,11 @@ title_img_label.pack(pady=20)
 
 
 Label(prompt_frame, text="Positive Prompt", bg="#40434D", fg="white", font=("평창 평화체 Light", 16)).pack(anchor="w")
-positive_text = ctk.CTkTextbox(prompt_frame, width=426, height=180, corner_radius=10, font=("arial", 14), fg_color="#50535B", text_color="white")
+positive_text = ctk.CTkTextbox(prompt_frame, width=426, height=180, corner_radius=10, font=("arial", 16), fg_color="#50535B", text_color="white")
 positive_text.pack(fill="x", pady=(0, 20))
 
 Label(prompt_frame, text="Negative Prompt", bg="#40434D", fg="white", font=("평창 평화체 Light", 16)).pack(anchor="w")
-negative_text = ctk.CTkTextbox(prompt_frame, width=426, height=180, corner_radius=10, font=("arial", 14), fg_color="#50535B", text_color="white")
+negative_text = ctk.CTkTextbox(prompt_frame, width=426, height=180, corner_radius=10, font=("arial", 16), fg_color="#50535B", text_color="white")
 negative_text.pack(fill="x", pady=(0, 10))
 
 
@@ -126,6 +128,34 @@ image_label.pack()
 save_button = None
 generated_image = None
 
+def draw_button_with_text(image, text, text_color = "white"):
+    draw = ImageDraw.Draw(image)
+    font = ImageFont.truetype("C:/Users/USER/AppData/Local/Microsoft/Windows/Fonts/PyeongChangPeace-Light.ttf", 25)
+
+    bbox = draw.textbbox((0, 0), text, font=font)
+    text_width = bbox[2] - bbox[0]
+    text_height = bbox[3] - bbox[1]
+
+    image_center_x = image.width / 2
+    image_center_y = image.height / 2
+
+    text_x = image_center_x - text_width / 2
+    text_y = (image_center_y - text_height / 2) - 5
+
+    draw.text((text_x, text_y), text, font=font, fill=text_color)
+    return image
+
+button_img_raw = Image.open("D:/backup/button.png").resize((180, 50), Image.LANCZOS)
+button_img = ImageTk.PhotoImage(draw_button_with_text(button_img_raw.copy(), "Generate"))
+button_push_img = ImageTk.PhotoImage(draw_button_with_text(
+    Image.open("D:/backup/button_push.png").resize((180, 50), Image.LANCZOS), 
+    "Generate", text_color="#6F6F6F"))
+
+save_img_default = ImageTk.PhotoImage(draw_button_with_text(button_img_raw.copy(), "Save", text_color="white"))
+save_img_pressed = ImageTk.PhotoImage(draw_button_with_text(
+    Image.open("D:/backup/button_push.png").resize((180, 50), Image.LANCZOS),
+    "Save", text_color="#6F6F6F"))
+
 
 def generate_image(prompt, neg_prompt):
     global generated_image, save_button
@@ -146,36 +176,23 @@ def generate_image(prompt, neg_prompt):
     status_label.config(text="이미지 생성 완료!")
     generated_image = image
 
-    resized = image.resize((512, 512))
-    tk_image = ImageTk.PhotoImage(resized)
+    tk_image = ImageTk.PhotoImage(image)
     image_label.config(image=tk_image)
     image_label.image = tk_image
 
+
+    def on_save_press(event):
+        save_button.config(image=save_img_pressed)
+
+    def on_save_release(event):
+        save_button.config(image=save_img_default)
     
-    button_bg = Image.open("D:/backup/button.png").resize((180, 50), Image.LANCZOS)
-    save_img = ImageTk.PhotoImage(draw_button_with_text(button_bg, "Save"))
-    save_button = Button(image_frame, image=save_img, command=save_image, borderwidth=0, bg="#40434D", activebackground="#40434D")
-    save_button.image = save_img
+
+    save_button = Button(image_frame, image=save_img_default, command=save_image, borderwidth=0, bg="#40434D", activebackground="#40434D")
+    save_button.image = save_img_default
     save_button.pack(pady=0)
-
-
-def draw_button_with_text(image, text):
-    draw = ImageDraw.Draw(image)
-    font = ImageFont.truetype("C:/Users/USER/AppData/Local/Microsoft/Windows/Fonts/PyeongChangPeace-Light.ttf", 25)
-
-    bbox = draw.textbbox((0, 0), text, font=font)
-    text_width = bbox[2] - bbox[0]
-    text_height = bbox[3] - bbox[1]
-
-    image_center_x = image.width / 2
-    image_center_y = image.height / 2
-
-    text_x = image_center_x - text_width / 2
-    text_y = (image_center_y - text_height / 2) - 5
-
-    draw.text((text_x, text_y), text, font=font, fill="white")
-    return image
-
+    save_button.bind("<ButtonPress-1>", on_save_press)
+    save_button.bind("<ButtonRelease-1>", on_save_release)
 
 
 def save_image():
@@ -201,12 +218,18 @@ def start_generation():
         threading.Thread(target=generate_image, args=(prompt, neg_prompt)).start()
 
 
-button_img_raw = Image.open("D:/backup/button.png").resize((180, 50), Image.LANCZOS)
-button_img = ImageTk.PhotoImage(draw_button_with_text(button_img_raw, "Generate"))
 generate_button = Button(prompt_frame, image=button_img, command=start_generation, borderwidth=0, bg="#40434D", activebackground="#40434D")
 generate_button.image = button_img
 generate_button.pack(anchor="e", pady=10)
 
+def on_generate_press(event):
+    generate_button.config(image=button_push_img)
+
+def on_generate_release(event):
+    generate_button.config(image=button_img)
+
+generate_button.bind("<ButtonPress-1>", on_generate_press)
+generate_button.bind("<ButtonRelease-1>", on_generate_release)
 
 root.mainloop()
 
