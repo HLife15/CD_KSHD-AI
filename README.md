@@ -49,3 +49,51 @@ LoRA 기법을 활영해 프롬프트를 입력하면 내 그림체(KSH Drawing 
 [허깅페이스](https://huggingface.co/datasets/HLife15/drawing)
 
 </br></br>
+
+### 2. **Fine-Tuning**
+</br>
+
+Fine-Tuning 코드는 아래와 같다. 사전 학습된 모델로는 Stable Diffusion 기반의 [**Anything-V5**](https://huggingface.co/stablediffusionapi/anything-v5)를 사용했다.
+
+</br>
+
+```
+accelerate launch train_text_to_image_lora.py 
+--pretrained_model_name_or_path="stablediffusionapi/anything-v5" 
+--dataset_name="HLife15/drawing" --caption_column='text' 
+--resolution=512 --random_flip 
+--train_batch_size=1 
+--num_train_epochs=50 --checkpointing_steps=10000 
+--learning_rate=1e-04 --lr_scheduler="cosine" --lr_warmup_steps=0 
+--seed=5508 
+--output_dir="D:\backup\finetuned\" 
+--validation_prompt="drawn by KSH drawing style, an anime girl, blonde hair, green eyes,school uniform, smile, sunshine, outside, park, river, blue sky" 
+--report_to="wandb" 
+```
+
+</br>
+
+이 중에서 학습을 여러번 진행하면서 조정한 항목들은 다음과 같다.
+
+</br>
+
+**--train_batch_size=1** : 한 번의 step에서 모델이 처리하는 데이터 샘플의 수 (1 or 2). </br>
+**--num_train_epochs=50** : 학습 반복 횟수. 이 코드에서는 전체 데이터셋을 50번 반복 학습한다. </br>
+**--checkpointing_steps=10000** : 일정 step마다 체크포인트를 저장한다. 이 코드에서는 10000step마다 체크포인트를 저장한다. </br>
+**--validation_prompt=** : 학습 시 생성할 이미지의 프롬프트. </br>
+
+학습은 총 {(데이터셋 이미지 개수) * (num_train_epochs)} / (train_batch_size) step으로 진행되며 5700장의 데이터셋을 기준으로 짧으면 5시간, 길면 60시간 정도 걸렸다.
+
+</br></br>
+
+### 3. **Image-Creating**
+</br>
+
+이미지 생성은 GUI까지 구현한 **make_gui.py**에서 진행하였다. Positive_prompt와 Negative_prompt를 입력하고 generate 버튼을 누르면 이미지가 생성되는 방식이다. 
+
+</br>
+
+![Image](https://github.com/user-attachments/assets/2d61cdf6-ac45-4841-a0b4-afc719fd7481)
+
+
+
