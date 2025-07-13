@@ -1,6 +1,6 @@
 accelerate launch train_text_to_image_lora.py 
 --pretrained_model_name_or_path="stablediffusionapi/anything-v5" 
---dataset_name="HLife15/drawing" --caption_column='text' 
+--dataset_name="HLife15/drawing" --caption_column="text" 
 --resolution=512 --random_flip 
 --train_batch_size=1 
 --num_train_epochs=20 --checkpointing_steps=10000 
