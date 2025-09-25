@@ -44,7 +44,7 @@ LoRA 기법을 활영해 프롬프트를 입력하면 내 그림체(KSH Drawing 
 
 </br>
 
-[데이터셋](https://drive.google.com/drive/folders/1zBY-aSAOy5z-U3XVi2xRMGVwZmGmJotw?usp=sharing)
+[데이터셋](https://drive.google.com/drive/folders/1iIQFhOkSXIoqaZ7ZG38tjJN79-bSCEn0?usp=sharing)
  
 [허깅페이스](https://huggingface.co/datasets/HLife15/drawing)
 
