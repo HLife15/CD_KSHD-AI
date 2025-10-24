@@ -24,42 +24,6 @@ LoRA 기법을 활영해 프롬프트를 입력하면 내 그림체(KSH Drawing 
 
 ### 🤔방법론
 ---
- 프로젝트 진행에 있어 가장 핵심이 된 기술은 바로 **Stable Diffusion**이다. Stable Diffusion은 텍스트로부터 이미지를 생성하는 딥러닝 기반의 확산 모델(Diffusion Model)로, Stability AI와 CompVis, Runway 등 여러 연구 기관이 협력하여 개발한 오픈소스 인공지능 모델이다. 이 모델은 노이즈가 섞인 이미지를 점진적으로 정제하면서 주어진 텍스트 프롬프트(Prompt)의 의미를 시각적으로 표현한다. 이러한 과정을 확산(denoising diffusion)이라 하며, 이미지의 생성 과정에서 잠재 공간(latent space)을 활용함으로써 연산 효율성과 메모리 사용량을 크게 줄였다.
- </br></br></br>
-![Image](https://github.com/user-attachments/assets/e8d22247-ddb3-4dae-9f9f-f8e6fe24b923)
-</br></br></br>
- Stable Diffusion은 이미지 생성 과정에서 **텍스트 인코더(Text Encoder)**와 U-Net 기반의 디노이징 네트워크, 그리고 **VAE(Variational Autoencoder)**를 사용한다. 텍스트 인코더는 입력된 문장의 의미를 벡터 형태로 변환하고, U-Net은 노이즈 제거 과정을 통해 점차적으로 이미지를 복원한다. 마지막으로 VAE는 잠재 공간에서 생성된 결과를 실제 이미지로 디코딩한다.
-</br></br>
-이와 같은 구조 덕분에 Stable Diffusion은 사용자의 텍스트 입력을 반영하여 고해상도·고품질의 이미지를 빠르게 생성할 수 있으며, 오픈소스 생태계를 통해 다양한 변형 모델(예: DreamBooth, LoRA, ControlNet 등)이 개발되었다. 이 프로젝트에선 그 중에서 **LoRA**를 선택해서 작업을 진행했다.
-</br></br></br>
-![image](https://www.ibm.com/content/dam/connectedassets-adobe-cms/worldwide-content/creative-assets/s-migr/ul/g/fa/f5/lora-2.component.xl-retina.ts=1744887783463.png/content/adobe-cms/us/en/think/topics/lora/jcr:content/root/table_of_contents/body-article-8/image)
-</br></br></br>
- **LoRA (Low-Rank Adaption) 기법**이란 기존의 사전 학습된 딥러닝 모델을 효율적으로 **Fine-Tuning**하는 방법이다. 새로운 데이터를 학습시키고 싶을 때, 전통적인 Fine-Tuning 기법은 사전 학습된 기존 모델을 처음부터 다시 학습하기 때문에 상당히 비효율적이다. 하지만 LoRA 기법은 기존 모델을 학습하지 않고 새로운 데이터를 기존 모델에 추가하는 식으로 학습을 진행하기 때문에 효율적이다. Stable Diffusion을 기반으로 한 KSH Drawing AI
-
-### 📄프로젝트 소개
----
-LoRA 기법을 활영해 프롬프트를 입력하면 내 그림체(KSH Drawing Style)로 그려주는 Text-to-Image 그림 생성 인공지능 프로그램 제작.
-</br></br></br></br>
-
-### ✒️KSH Drawing Style
----
-<p align="center">
-  <img src="https://github.com/HLife15/CD_KSHD-AI/blob/main/Drawing/%EB%A3%A8%EB%B9%84.png" width="45%"/>
-  <img src="https://github.com/HLife15/CD_KSHD-AI/blob/main/Drawing/%EC%B9%B4%EB%82%98.png" width="45%"/>
-</p>
-<p align="center">
-  <img src="https://github.com/HLife15/CD_KSHD-AI/blob/main/Drawing/%ED%86%A0%EB%8F%84%EB%A1%9C%ED%82%A4.png" width="45%"/>
-  <img src="https://github.com/HLife15/CD_KSHD-AI/blob/main/Drawing/%EC%9D%B4%EC%83%81.png" width="45%"/>
-</p>
-
-* 애니메이션 느낌
-* 간결한 선과 명암 표현
-* 여자 캐릭터는 눈이 크고 아이라인을 두껍게 표현
-* 남자 캐릭터는 여자 캐릭터에 비해 눈이 작고 아이라인은 얇게 표현
-</br></br></br></br>
-
-### 🤔방법론
----
  프로젝트 진행에 있어 가장 핵심이 된 기술은 바로 **Stable Diffusion**이다. Stable Diffusion은 '**텍스트로부터 이미지를 생성하는 딥러닝 기반의 확산 모델 (Diffusion Model)**'로, Stability AI와 CompVis, Runway 등 여러 연구 기관이 협력하여 개발한 오픈소스 인공지능 모델이다. 이 모델은 노이즈가 섞인 이미지를 점진적으로 정제하면서 주어진 텍스트 프롬프트(Prompt)의 의미를 시각적으로 표현한다. 이러한 과정을 '**확산 (denoising diffusion)**'이라 하며, 이미지의 생성 과정에서 '**잠재 공간(latent space)**'을 활용함으로써 연산 효율성과 메모리 사용량을 크게 줄였다.
  </br></br></br>
 ![Image](https://github.com/user-attachments/assets/e8d22247-ddb3-4dae-9f9f-f8e6fe24b923)
