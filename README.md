@@ -130,7 +130,7 @@ Negative Prompt (공용) : wrong number of person, wrong gender, wrong hair styl
 </p>
 </br>
 Positive Prompt : (drawn by KSH drawing style : 1.5), an anime girl, blonde hair, green eyes, school uniform, smile, sunshine, outside, park, river, blue sky
-</br></br>
+</br></br></br>
 <p align="center">
   <img src="https://github.com/user-attachments/assets/179a8bc5-7ad0-40dd-be9c-77cda5e9b2d9" width="45%"/>
   <img src="https://github.com/user-attachments/assets/ab8031ac-c490-45a8-a5b8-5a095541cab1" width="45%"/>
