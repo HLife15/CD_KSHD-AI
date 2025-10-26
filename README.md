@@ -47,7 +47,7 @@
 ### 1. **Image Captioning**
 </br>
 
-&ensp;우선 데이터셋의 각 이미지들에 대해 설명하는 캡션을 생성해야 하기에 이 과정에선 [**BLIP-2**](https://huggingface.co/docs/transformers/en/model_doc/blip-2)를 이용한한다.</br></br></br>
+&ensp;우선 데이터셋의 각 이미지들에 대해 설명하는 캡션을 생성해야 하기에 이 과정에선 [**BLIP-2**](https://huggingface.co/docs/transformers/en/model_doc/blip-2)를 이용했다.</br></br></br>
 
 ![Image](https://github.com/user-attachments/assets/bc1793e6-e5aa-4ddf-a168-f88001ca9904) </br></br></br>
 &ensp;'**BLIP-2 (Bootstrapped Language-Image Pretraining 2)**'는 이미지와 텍스트를 함께 이해하고 연결하는 AI 모델이다. 이미지를 제공하면 Vision Encoder에서 그 이미지를 숫자 정보로 바꾸고, Q-Former에서 그 정보를 언어모델이 이해할 수 있는 형태로 변환한다. 마지막으로 Language Model (LLM)이 정보에 대한 대답을 자연어로 생성하는 구조로 설계되어 있다. 이를 이용해 약 4500장의 데이터셋의 이미지들에 대한 캡션을 빠르게 생성할 수 있다.</br></br>
