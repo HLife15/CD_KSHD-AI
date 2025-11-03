@@ -44,7 +44,7 @@
 
 ### 🎢구현 방법
 ---
-### 1. **Image Captioning**
+#### 1. **Image Captioning**
 </br>
 
 &ensp;우선 데이터셋의 각 이미지들에 대해 설명하는 캡션을 생성해야 하기에 이 과정에선 [**BLIP-2**](https://huggingface.co/docs/transformers/en/model_doc/blip-2)를 이용했다.</br></br></br>
@@ -65,7 +65,7 @@
 
 </br></br>
 
-### 2. **Fine-Tuning**
+#### 2. **Fine-Tuning**
 </br>
 
 &ensp;Fine-Tuning 코드는 아래와 같다. 사전 학습된 모델(pretrained_model_name_or_path)로는 Stable Diffusion 기반의 [**Anything-V5**](https://huggingface.co/stablediffusionapi/anything-v5)를 사용했다.
@@ -101,7 +101,7 @@ accelerate launch train_text_to_image_lora.py
 
 </br></br>
 
-### 3. **Image-Creating**
+#### 3. **Image Creation**
 </br>
 
 &ensp;이미지 생성은 Custom Tkinter를 이용하여 구현한 GUI까지 포함된 **make_gui.py**에서 진행하였다. Positive Prompt와 Negative Prompt를 입력하고 Generate 버튼을 누르면 이미지가 생성되는 방식이다. 
