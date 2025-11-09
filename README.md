@@ -37,7 +37,7 @@
 &ensp;**LoRA (Low-Rank Adaption) 기법**이란 기존의 사전 학습된 딥러닝 모델을 효율적으로 **Fine-Tuning**하는 방법이다. 새로운 데이터를 학습시키고 싶을 때, 전통적인 Fine-Tuning 기법은 사전 학습된 기존 모델을 처음부터 다시 학습하기 때문에 상당히 비효율적이다. 하지만 LoRA 기법은 기존 모델을 학습하지 않고 새로운 데이터를 기존 모델에 추가하는 식으로 학습을 진행하기 때문에 효율적이다. Stable Diffusion을 기반으로 한 기존의 이미지 생성 모델은 잘 훈련되어 있기 때문에 새로운 데이터들만 효율적으로 학습시키는 LoRA 기법을 채택하였고 이 프로젝트에서 사용한 Stable Diffusion 기반 모델은 [**Anything V5**](https://huggingface.co/stablediffusionapi/anything-v5)이다. </br></br>
 &ensp;**Anything V5**는 Stable Diffusion을 기반으로 한 커스텀 파인튜닝 모델로, 특히 **애니메이션 풍 (Anime Style)** 이미지 생성에 최적화된 버전이다. 본 모델은 기본 Stable Diffusion 모델(SD 1.5 또는 SD 2.x)에 비해 다음과 같은 주요 차이점을 가진다.</br></br>
 &ensp;첫 번째로 Anything V5는 대규모의 **애니메이션, 일러스트, 만화풍 이미지**를 중심으로 학습되어 인물의 윤곽선, 색감, 눈의 디테일, 채색 질감 등에서 일반 Stable Diffusion보다 훨씬 높은 표현력을 가진다. 두 번째로 **텍스트 프롬프트에 대한 응답성이 강화**되어, 세부 묘사 (Soft Lighting, Detailed Eyes, Dynamic Pose 등)를 보다 정밀하게 반영하며, 스타일 태그 (1 girl, Masterpiece, Best Quality 등)에 최적화되어 있어, 프롬프트 설계 시 높은 제어성을 제공한다. 마지막으로 Anything V5는 기존 Stable Diffusion의 모델 가중치 위에 추가적인 파인튜닝이 이루어져, 다양한 샘플러(Euler, DPM++, DDIM 등)에서도 안정적인 품질을 유지한다. 또한 VAE 및 LoRA 확장과의 호환성이 좋아, 세부 그림체나 표정 표현을 쉽게 커스터마이징할 수 있다는 장점이 있다.</br></br>
-&ensp;결과적으로 Anything V5는 **Stable Diffusion의 구조적 강점은 유지하면서도, 특정 시각적 스타일(애니풍)을 극대화한 모델**로 정의할 수 있다. 따라서 애니메이션 풍의 내 그림체 학습을 진행하기에에 가장 적절한 모델이라 판단했다. 
+&ensp;결과적으로 Anything V5는 **Stable Diffusion의 구조적 강점은 유지하면서도, 특정 시각적 스타일(애니풍)을 극대화한 모델**로 정의할 수 있다. 따라서 애니메이션 풍의 내 그림체 학습을 진행하기에 가장 적절한 모델이라 판단했다. 
  
 </br></br></br></br>
 
